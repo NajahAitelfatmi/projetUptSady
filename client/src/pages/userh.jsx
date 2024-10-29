@@ -181,7 +181,7 @@ const Userh = () => {
           <div key={post.id} className={`col-lg-${12 / itemsPerRow} col-sm-6`}>
             <div className="single-course" style={{ margin: "20px" }}>
               <div className="courses-image">
-                <Link to="/course-details">
+                <Link to="/">
                
                   <img  src={`../upload/${post.img}`} alt="Courses" style={{ width: "100%", height: "200px" }}  />
                 </Link>

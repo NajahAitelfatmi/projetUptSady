@@ -34,7 +34,7 @@ export default function Home() {
 
 <div className="offcanvas-header">
     <div className="offcanvas-logo">
-        <Link to="index.html"><img src="assets/images/logo-white.png" alt=""/></Link>
+        <Link to="/"><img src="assets/images/logo-white.png" alt=""/></Link>
     </div>
 
     <button type="button" className="close-btn" data-bs-dismiss="offcanvas"><i className="flaticon-close"></i></button>
@@ -151,7 +151,7 @@ export default function Home() {
           <div key={post.id} className={`col-lg-${12 / itemsPerRow} col-sm-6`}>
             <div className="single-course" style={{ margin: "20px" }}>
               <div className="courses-image">
-                <Link to="/course-details">
+                <Link to="/">
                
                   <img  src={`../upload/${post.img}`} alt="Courses" style={{ width: "100%", height: "200px" }}  />
                 </Link>
@@ -270,7 +270,7 @@ export default function Home() {
             <div className="col-lg-6">
                 <div className="brand-title-wrap">
                     <h2 className="title">The trusted market leader in talent transformation through education </h2>
-                    <Link to="login-register.html" className="btn">Start Learning Now</Link>
+                    <Link to="/" className="btn">Start Learning Now</Link>
                 </div>
             </div>
             <div className="col-lg-6">
@@ -383,45 +383,45 @@ export default function Home() {
                 <div className="col-lg-4 col-sm-6">
                     <div className="single-blog text-center">
                         <div className="blog-img">
-                            <Link to="blog-details.html"><img src="assets/images/blog/blog-1.jpg" alt=""/></Link>
+                            <Link to="/"><img src="assets/images/blog/blog-1.jpg" alt=""/></Link>
                         </div>
                         <div className="blog-content">
                             <div className="blog-meta">
                                 <span><i className="far fa-user"></i> <Link to="#">Admin</Link></span>
                                 <span><i className="far fa-calendar-alt"></i> 09 Jun, 2023</span>
                             </div>
-                            <h3 className="title"><Link to="blog-details.html">How to Make Your UX Design Portfolio Stand Out</Link></h3>
-                            <Link className="blog-btn" to="blog-details.html"> Read More</Link>
+                            <h3 className="title"><Link to="/">How to Make Your UX Design Portfolio Stand Out</Link></h3>
+                            <Link className="/" to="/"> Read More</Link>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-sm-6">
                     <div className="single-blog text-center">
                         <div className="blog-img">
-                            <Link to="blog-details.html"><img src="assets/images/blog/blog-2.jpg" alt=""/></Link>
+                            <Link to="/"><img src="assets/images/blog/blog-2.jpg" alt=""/></Link>
                         </div>
                         <div className="blog-content">
                             <div className="blog-meta">
                                 <span><i className="far fa-user"></i> <Link to="#">Admin</Link></span>
                                 <span><i className="far fa-calendar-alt"></i> 11 Jun, 2023</span>
                             </div>
-                            <h3 className="title"><Link to="blog-details.html">The Complete Digital Marketing Learning Path</Link></h3>
-                            <Link className="blog-btn" to="blog-details.html"> Read More</Link>
+                            <h3 className="title"><Link to="/">The Complete Digital Marketing Learning Path</Link></h3>
+                            <Link className="blog-btn" to="/"> Read More</Link>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-sm-6">
                     <div className="single-blog text-center">
                         <div className="blog-img">
-                            <Link to="blog-details.html"><img src="assets/images/blog/blog-3.jpg" alt=""/></Link>
+                            <Link to="/"><img src="assets/images/blog/blog-3.jpg" alt=""/></Link>
                         </div>
                         <div className="blog-content">
                             <div className="blog-meta">
                                 <span><i className="far fa-user"></i> <Link to="#">Admin</Link></span>
                                 <span><i className="far fa-calendar-alt"></i> 15 Jun, 2023</span>
                             </div>
-                            <h3 className="title"><Link to="blog-details.html">How To Start Learn Online Study From Your Home</Link></h3>
-                            <Link className="blog-btn" to="blog-details.html"> Read More</Link>
+                            <h3 className="title"><Link to="/">How To Start Learn Online Study From Your Home</Link></h3>
+                            <Link className="blog-btn" to="/"> Read More</Link>
                         </div>
                     </div>
                 </div>
@@ -499,7 +499,7 @@ export default function Home() {
 <div className="course-hover">
     <div className="courses-content">
         <div className="top-meta"><Link className="tag" to="#">Beginner</Link></div>
-        <h3 className="title"><Link to="course-details.html">Design 101: Product & Web Design Course</Link></h3>
+        <h3 className="title"><Link to="/">Design 101: Product & Web Design Course</Link></h3>
     </div>
     <div className="rating">
         <div className="rating-star">
@@ -513,7 +513,7 @@ export default function Home() {
         <p className="student"><i className="flaticon-google-docs"></i> 10 Lessons</p>
         <p className="student"><i className="far fa-clock"></i> 03 Hours</p>
     </div>
-    <div className="courses-btn"><Link className="btn" to="course-details.html">Course Full Details</Link></div>
+    <div className="courses-btn"><Link className="btn" to="/">Course Full Details</Link></div>
 </div>
 </div>
 
