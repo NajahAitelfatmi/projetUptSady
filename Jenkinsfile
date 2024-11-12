@@ -4,7 +4,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Récupérer le code source depuis GitHub
-                git branch: 'main', url: 'https://github.com/NajahAitelfatmi/projetUptSady.git'
+                git branch: 'master', url: 'https://github.com/NajahAitelfatmi/projetUptSady.git'
             }
         }
         stage('Install Dependencies') {
