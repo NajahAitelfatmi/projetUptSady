@@ -9,6 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "../client/public/upload");
@@ -30,5 +31,5 @@ app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
 app.listen(8800, () => {
-  console.log("Connected!");
+  console.log("Server is running on port 8800!");
 });
