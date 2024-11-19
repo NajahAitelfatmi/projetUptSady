@@ -50,7 +50,6 @@ const Menu = ({cat}) => {
     }}>
       <h1 style={{fontSize: "20px",
           color:   "green"}}>Other posts you may like</h1>
-          
       {posts.map((post) => (
         <div className="post" key={post.id} style={{display: "flex",
           flexDirection: "column",

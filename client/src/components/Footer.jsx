@@ -101,7 +101,7 @@ export default function footer() {
             <div className="course-hover">
                 <div className="courses-content">
                     <div className="top-meta"><Link className="tag" to="#">Beginner</Link></div>
-                    <h3 className="title"><Link to="course-details.html">Design 101: Product & Web Design Course</Link></h3>
+                    <h3 className="title"><Link to="/">Design 101: Product & Web Design Course</Link></h3>
                 </div>
                 <div className="rating">
                     <div className="rating-star">
@@ -115,7 +115,7 @@ export default function footer() {
                     <p className="student"><i className="flaticon-google-docs"></i> 10 Lessons</p>
                     <p className="student"><i className="far fa-clock"></i> 03 Hours</p>
                 </div>
-                <div className="courses-btn"><Link className="btn" to="course-details.html">Course Full Details</Link></div>
+                <div className="courses-btn"><Link className="btn" to="/">Course Full Details</Link></div>
             </div>
         </div>
     </div>
