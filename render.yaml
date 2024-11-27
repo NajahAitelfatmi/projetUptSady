@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: my-nodejs-api
+    env: node
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    repo: https://github.com/NajahAitelfatmi/projetUptSady
+    branch: v3
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /health
+    buildDir: api  # Assuming the backend is located in the 'api' folder
+
+  - type: web
+    name: my-react-client
+    env: node
+    buildCommand: "npm install && npm run build"
+    startCommand: "serve -s build"
+    repo: https://github.com/NajahAitelfatmi/projetUptSady
+    branch: v3
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /health
+    buildDir: client  # Assuming the frontend is located in the 'client' folder
