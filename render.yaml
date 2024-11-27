@@ -13,14 +13,13 @@ services:
     buildDir: api  # Assuming the backend is located in the 'api' folder
 
   - type: web
-    name: my-react-client
+    name: booking-frontend
     env: node
-    buildCommand: "npm install"
+    buildCommand: "npm install -g react-scripts && npm install --force && npm run build"
     startCommand: "serve -s build"
     repo: https://github.com/NajahAitelfatmi/projetUptSady
     branch: v3
     envVars:
       - key: NODE_ENV
         value: production
-    healthCheckPath: /health
-    buildDir: client  # Assuming the frontend is located in the 'client' folder
+    buildDir: client
