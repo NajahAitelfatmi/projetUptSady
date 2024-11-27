@@ -5,10 +5,10 @@ dotenv.config();
 import mysql from "mysql"
 
 export const db = mysql.createConnection({
-  host:"localhost",
-  user:"root",
-  password: process.env.DB_KEY,
-  database:"blog"
+  host: process.env.DB_HOST, // L'adresse de votre base de données sur Render
+  user: process.env.DB_USER, // Votre nom d'utilisateur pour la base de données
+  password: process.env.DB_PASSWORD, // Votre mot de passe pour la base de données
+  database: process.env.DB_NAME, 
 })
 // Vérifier si la connexion est réussie
 db.connect((err) => {
