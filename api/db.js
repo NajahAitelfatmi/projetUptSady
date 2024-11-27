@@ -9,6 +9,8 @@ export const db = mysql.createConnection({
   user: process.env.DB_USER, // Votre nom d'utilisateur pour la base de données
   password: process.env.DB_PASSWORD, // Votre mot de passe pour la base de données
   database: process.env.DB_NAME, 
+  port: process.env.DB_PORT,
+
 })
 // Vérifier si la connexion est réussie
 db.connect((err) => {
