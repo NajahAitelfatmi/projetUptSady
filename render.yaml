@@ -15,7 +15,7 @@ services:
   - type: web
     name: my-react-client
     env: node
-    buildCommand: "npm install && npm run build"
+    buildCommand: "npm install"
     startCommand: "serve -s build"
     repo: https://github.com/NajahAitelfatmi/projetUptSady
     branch: v3
