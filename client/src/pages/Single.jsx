@@ -3,6 +3,7 @@ import Edit from "../img/edit.png";
 import Delete from "../img/delete.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
+import Comments from "../components/Comments";
 import axios from "axios";
 import moment from "moment";
 import { useContext } from "react";
@@ -77,23 +78,25 @@ const Single = () => {
             <p>Posted {moment(post.date).fromNow()}</p>
           </div>
           {currentUser.username === post.username && (
-            <div className="edit" style={{
-              display: "flex",
-               gap: "5px",
-
-            }}>
-              {/* <Link to={`/write?edit=2`} state={post}>
-    <img src={Edit} alt="Edit Post" style={{
-      marginLeft: '100px',
-      cursor: "pointer",
-      width: '40px', height: '40px',
-    }} />
-  </Link>
-
-  // <img onClick={handleDelete} src={Delete} alt="Delete Post" style={{width:'40px', height:'40px'}} /> */}
+             <div className="edit" style={{ display: "flex", gap: "10px" }}>
+                <Link to={`/write?edit=2`} state={post}>
+                  <img 
+                    src={Edit} 
+                    alt="Edit" 
+                    style={{ cursor: "pointer", width: "40px", height: "40px" }} 
+                  />
+                </Link>
+                <img 
+                  onClick={handleDelete} 
+                  src={Delete} 
+                  alt="Delete" 
+                  style={{ cursor: "pointer", width: "40px", height: "40px" }} 
+                />
+              </div>
+            )}
+         
             </div>
-          )}
-        </div>
+            <Comments postId={postId} currentUser={currentUser} />
         <h3 style={{ fontSize:"14px",
           color: "#333"}}>{post.title}</h3>
         <p style={{ textAlign: "justify",

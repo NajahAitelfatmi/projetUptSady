@@ -5,6 +5,7 @@ import postRoutes from "./routes/posts.js";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import nodemailer from 'nodemailer';
+import { db } from "./db.js";
 
 const app = express();
 
@@ -27,6 +28,53 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
   res.status(200).json(file.filename);
 });
 
+// Fetch Comments for a Post
+app.get("/api/comments/:postId", (req, res) => {
+  const postId = req.params.postId;
+  const query = "SELECT * FROM comments WHERE postId = ? ORDER BY date ASC";
+  db.query(query, [postId], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to fetch comments." });
+    }
+    res.json(results);
+  });
+});
+
+// Add a New Comment
+app.post("/api/comments", (req, res) => {
+  const { postId, userId, text } = req.body;
+
+  // Fetch username from users table
+  const userQuery = "SELECT username FROM users WHERE id = ?";
+  db.query(userQuery, [userId], (err, userResult) => {
+    if (err || userResult.length === 0) {
+      console.error(err);
+      return res.status(500).json({ error: "Failed to fetch user." });
+    }
+
+    const username = userResult[0].username;
+    const query =
+      "INSERT INTO comments (postId, userId, username, text, date) VALUES (?, ?, ?, ?, ?)";
+    const date = moment().format("YYYY-MM-DD HH:mm:ss");
+
+    db.query(query, [postId, userId, username, text, date], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Failed to add comment." });
+      }
+
+      res.json({
+        id: result.insertId,
+        postId,
+        userId,
+        username,
+        text,
+        date,
+      });
+    });
+  });
+});
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, subject, message } = req.body;
