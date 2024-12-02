@@ -6,13 +6,7 @@ pipeline {
         NODE_ENV = 'test'
     }
 
-    stages {
-        // Etape 1: Checkout du code
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/NajahAitelfatmi/projetUptSady.git'
-            }
-        }
+    
 
         // Etape 2: Installer les dépendances et exécuter les tests pour le backend (Node.js)
         stage('Backend Tests') {
@@ -31,9 +25,7 @@ pipeline {
 
         // Etape 3: Déploiement du backend (optionnel selon votre configuration)
         stage('Deploy Backend') {
-            when {
-                branch 'v3'
-            }
+            
             steps {
                 dir('api') {
                     script {
