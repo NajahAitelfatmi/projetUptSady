@@ -1,9 +1,9 @@
 import request from 'supertest';
-import { app } from '../routes/users'; // Importer correctement l'application Express
+import { app } from '../routes/users.js'; // Importer correctement l'application Express
 import * as dbModule from '../db.js'; // Importer le module db pour le mock
 
 // Mock la fonction db.query
-jest.mock('../db');
+jest.mock('../db.js');
 
 describe('Post Routes', () => {
   it('should create a new post', async () => {
