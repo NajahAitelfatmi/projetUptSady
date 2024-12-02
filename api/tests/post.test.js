@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { app } from '../routes/users'; // Importer correctement l'application Express
-import * as dbModule from '../db'; // Importer le module db pour le mock
+import * as dbModule from '../db.js'; // Importer le module db pour le mock
 
 // Mock la fonction db.query
 jest.mock('../db');
