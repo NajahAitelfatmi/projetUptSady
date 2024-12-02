@@ -6,12 +6,7 @@ pipeline {
     }
 
     stages {
-        // Étape pour cloner votre dépôt Git
-        stage('Checkout') {
-            steps {
-                git branch: 'v3', url: 'https://github.com/NajahAitelfatmi/projetUptSady'  // Remplacez par votre URL Git
-            }
-        }
+        
 
         // Étape pour installer les dépendances avec npm
         stage('Install Dependencies') {
