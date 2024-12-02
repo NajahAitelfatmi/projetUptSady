@@ -49,4 +49,4 @@ pipeline {
             echo 'Build échoué!'
         }
     }
-}
+
