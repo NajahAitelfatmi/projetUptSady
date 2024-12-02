@@ -4,12 +4,16 @@ pipeline {
     environment {
         // Variables d'environnement pour les tests, si nécessaire
         NODE_ENV = 'test'
+      GIT_HTTP_MAX_REQUEST_BUFFER = '104857600'  // 100 MB
+
     }
 
     stages {
         // Etape 1: Checkout du code
         stage('Checkout') {
             steps {
+                 sh 'git config --global http.postBuffer 524288000'  // 500 MB buffer
+
                 git 'https://github.com/NajahAitelfatmi/projetUptSady.git'  // Remplacez par l'URL de votre dépôt
             }
         }
