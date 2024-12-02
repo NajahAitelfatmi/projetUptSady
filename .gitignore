@@ -1,0 +1,33 @@
+# Node.js (Backend)
+node_modules/
+npm-debug.log
+.env
+
+# Dossiers de build (Frontend React)
+build/
+dist/
+
+# Fichiers de logs
+*.log
+
+# Dossiers spécifiques à l'IDE
+.vscode/
+.idea/
+
+# Dossier de cache de npm
+.npm/
+
+# Dossier de dépendances locales
+bower_components/
+
+# Dossier de dépendances du frontend (React.js)
+client/node_modules/
+
+# Dossier de dépendances du backend (Node.js)
+api/node_modules/
+
+# Fichiers de configuration de tests
+coverage/
+
+# Fichiers temporaires
+*.swp

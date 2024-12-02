@@ -1,38 +1,45 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS 23.3.0'  // Utilise l'installation Node.js configurée dans Jenkins
+    environment {
+        // Variables d'environnement pour les tests, si nécessaire
+        NODE_ENV = 'test'
     }
 
     stages {
-        
-
-        // Étape pour installer les dépendances avec npm
-        stage('Install Dependencies') {
+        // Etape 1: Checkout du code
+        stage('Checkout') {
             steps {
-                script {
-                    sh 'npm install'  // Installe les dépendances
+                git 'https://github.com/NajahAitelfatmi/projetUptSady.git'
+            }
+        }
+
+        // Etape 2: Installer les dépendances et exécuter les tests pour le backend (Node.js)
+        stage('Backend Tests') {
+            steps {
+                dir('api') {
+                    script {
+                        // Installer les dépendances du backend
+                        sh 'npm install'
+
+                        // Exécuter les tests backend
+                        sh 'npm test'
+                    }
                 }
             }
         }
 
-        
-        stage('Run Tests') {
-            steps {
-                // Change directory to api/tests and run tests
-                dir('api/tests') {
-                    // Run your test suite using Jest or Mocha (or your preferred testing framework)
-                    sh 'npm test'  // Or `yarn test` if you're using Yarn
-                }
+        // Etape 3: Déploiement du backend (optionnel selon votre configuration)
+        stage('Deploy Backend') {
+            when {
+                branch 'v3'
             }
-        }
-        // Étape pour déployer (par exemple, sur un serveur)
-        stage('Deploy') {
             steps {
-                script {
-                    // Ajouter ici vos étapes de déploiement
-                    sh 'echo "Déploiement réussi !"'
+                dir('api') {
+                    script {
+                        // Déployer le backend (exemple avec Heroku, AWS, etc.)
+                        sh './deploy.sh'
+                    }
                 }
             }
         }
@@ -40,13 +47,14 @@ pipeline {
 
     post {
         always {
-            echo 'Pipeline terminé !'
+            // Étapes à exécuter après la fin du pipeline
+            echo 'Pipeline terminé.'
         }
         success {
-            echo 'Le build a réussi !'
+            echo 'Build réussi!'
         }
         failure {
-            echo 'Le build a échoué.'
+            echo 'Build échoué!'
         }
     }
 }
