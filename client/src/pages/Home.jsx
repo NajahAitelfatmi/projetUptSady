@@ -99,7 +99,7 @@ const Home = () => {
               <div className="top-meta">
                  <div className="tag-time">
 
-                 <h3 className="title"><Link to={`https://projetuptsadya.onrender.com/api/post/${post.id}`}>{post.title}</Link></h3>
+                 <h3 className="title"><Link to={`/post/${post.id}`}>{post.title}</Link></h3>
 
                                                         </div>
 
