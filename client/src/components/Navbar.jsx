@@ -20,13 +20,13 @@ const Navbar = () => {
                 <div className="header-menu d-none d-lg-block">
                   <ul className="main-menu">
                     <li className="active-menu">
-                      <Link to="https://projetuptsadya.onrender.com/api/h/?cat=art">Art</Link>
+                      <Link to="/h/?cat=art">Art</Link>
                     </li>
-                    <li><Link to="https://projetuptsadya.onrender.com/api/h/?cat=science">Science</Link></li>
-                    <li><Link to="https://projetuptsadya.onrender.com/api/h/?cat=technology">Technology</Link></li>
-                    <li><Link to="https://projetuptsadya.onrender.com/api/h/?cat=cinema">Cinema</Link></li>
-                    <li><Link to="https://projetuptsadya.onrender.com/api/h/?cat=design">Design</Link></li>
-                    <li><Link to="https://projetuptsadya.onrender.com/api/h/?cat=food">Food</Link></li>
+                    <li><Link to="/h/?cat=science">Science</Link></li>
+                    <li><Link to="/h/?cat=technology">Technology</Link></li>
+                    <li><Link to="/h/?cat=cinema">Cinema</Link></li>
+                    <li><Link to="/h/?cat=design">Design</Link></li>
+                    <li><Link to="/h/?cat=food">Food</Link></li>
                   </ul>
                 </div>
               </div>
