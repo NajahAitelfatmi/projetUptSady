@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://your-backend-url.com/auth/login", inputs);
+      const response = await axios.post("https://projetuptsadya.onrender.comm/auth/login", inputs);
       
       // Assuming the response contains a JWT token
       const { token, user } = response.data;
