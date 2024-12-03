@@ -26,51 +26,34 @@ const Write = () => {
   };
 
   const handleClick = async (e) => {
-  e.preventDefault();
-
-  // Upload the file if one is provided
-  const imgUrl = file ? await upload() : "";
-
-  // Retrieve the JWT token from localStorage (or any other storage)
-  const token = localStorage.getItem("jwtToken");
-
-  try {
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
-
-    if (state) {
-      // Update an existing post
-      await axios.put(
-        `https://projetuptsadya.onrender.com/api/posts/${state.id}`,
-        {
-          title,
-          desc: value,
-          cat,
-          pdf: imgUrl,
-        },
-        { headers }
-      );
-    } else {
-      // Create a new post
-      await axios.post(
-        `https://projetuptsadya.onrender.com/api/posts/`,
-        {
-          title,
-          desc: value,
-          cat,
-          pdf: imgUrl,
-          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-        },
-        { headers }
-      );
+    e.preventDefault();
+  
+    // Upload the file if provided
+    const imgUrl = file ? await upload() : "";
+  
+    try {
+      const endpoint = state
+        ? `https://projetuptsadya.onrender.com/api/posts/${state.id}`
+        : `https://projetuptsadya.onrender.com/api/posts/`;
+  
+      const method = state ? "put" : "post";
+      const payload = {
+        title,
+        desc: value,
+        cat,
+        pdf: imgUrl,
+        ...(state ? {} : { date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss") }),
+      };
+  
+      // Axios automatically sends cookies if they are set as httpOnly
+      await axios[method](endpoint, payload, { withCredentials: true });
+  
+      navigate("/h");
+    } catch (err) {
+      console.error("Error while posting:", err.response?.data || err.message);
     }
-
-    navigate("/h");
-  } catch (err) {
-    console.error("Error while posting:", err);
-  }
-};
+  };
+  
 
 
   return (

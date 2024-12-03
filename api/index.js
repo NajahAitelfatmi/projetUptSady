@@ -8,14 +8,19 @@ import moment from "moment";
 import { db } from "./db.js";
 import cors from "cors";
 
-const app = express();
-app.use(cors());
+
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
 
 
+
+// Configuration CORS
+app.use(cors({
+  origin: "https://projetuptsadyf.onrender.com", // Remplacez par votre URL front-end
+  credentials: true, // Permet l'envoi des cookies
+}));
 
 
 // File upload configuration
