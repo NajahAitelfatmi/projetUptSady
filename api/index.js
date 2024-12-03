@@ -14,9 +14,11 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// Autoriser toutes les origines (à personnaliser pour plus de sécurité)
+
+// Configuration CORS pour autoriser votre frontend à accéder au backend
 app.use(cors({
-  origin: "https://projetuptsadyf.onrender.com" // Remplacez par l'URL de votre frontend
+  origin: "https://projetuptsadyf.onrender.com", // Remplacez par l'URL de votre frontend
+  credentials: true, // Permet l'utilisation des cookies ou des en-têtes authentifiés
 }));
 
 // File upload configuration
