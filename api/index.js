@@ -6,13 +6,14 @@ import cookieParser from "cookie-parser";
 import multer from "multer";
 import moment from "moment";
 import { db } from "./db.js";
+import cors from "cors";
+import express from "express";
 
 const app = express();
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-const cors = require("cors");
 
 // Autoriser toutes les origines (à personnaliser pour plus de sécurité)
 app.use(cors({
