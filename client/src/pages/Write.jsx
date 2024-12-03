@@ -28,29 +28,31 @@ const Write = () => {
 
 
   const handleClick = async (e) => {
-    e.preventDefault();
-    const imgUrl = await upload();
+  e.preventDefault();
+  const imgUrl = await upload();
 
-    try {
-      state
-        ? await axios.put(`${apiUrl}/posts/${state.id}`, {
-            title,
-            desc: value,
-            cat,
-            pdf: file ? imgUrl : "",
-          })
-        : await axios.post(`${apiUrl}/posts/`, {
-            title,
-            desc: value,
-            cat,
-            pdf: file ? imgUrl : "",
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-          });
-      navigate("/h");
-    } catch (err) {
-      console.log(err);
+  try {
+    if (state) {
+      await axios.put(`${apiUrl}/posts/${state.id}`, {
+        title,
+        desc: value,
+        cat,
+        pdf: file ? imgUrl : "",
+      });
+    } else {
+      await axios.post(`${apiUrl}/posts/`, {
+        title,
+        desc: value,
+        cat,
+        pdf: file ? imgUrl : "",
+        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+      });
     }
-  };
+    navigate("/h");
+  } catch (err) {
+    console.log('Error details:', err.response ? err.response.data : err.message);
+  }
+};
 
   return (
     <div className="add" style={{ marginTop: "100px", display: "flex", gap: "20px" }}>
