@@ -47,14 +47,14 @@ const Write = () => {
 
       if (state) {
         // Edit existing post
-        await axios.put(`${apiUrl}/posts/${state.id}`, postData, {
+        await axios.put(`https://projetuptsadya.onrender.com/api/posts/${state.id}`, postData, {
           headers: {
             Authorization: `Bearer ${getToken()}`, // Add JWT token
           },
         });
       } else {
         // Create new post
-        await axios.post(`${apiUrl}/posts/`, {
+        await axios.post(`https://projetuptsadya.onrender.com/api/posts/`, {
           ...postData,
           date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         }, {

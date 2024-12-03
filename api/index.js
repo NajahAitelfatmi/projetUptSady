@@ -18,7 +18,6 @@ app.use(cookieParser());
 // Configuration CORS pour autoriser votre frontend à accéder au backend
 app.use(cors({
   origin: "https://projetuptsadyf.onrender.com", // Remplacez par l'URL de votre frontend
-  credentials: true, // Permet l'utilisation des cookies ou des en-têtes authentifiés
 }));
 
 // File upload configuration
@@ -34,18 +33,18 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Upload route
-app.post("/api/upload", upload.single("file"), (req, res) => {
+app.post("https://projetuptsadya.onrender.com/api/api/upload", upload.single("file"), (req, res) => {
   const file = req.file;
   res.status(200).json(file.filename);
 });
 
 // Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/posts", postRoutes);
+app.use("https://projetuptsadya.onrender.com/api/api/auth", authRoutes);
+app.use("https://projetuptsadya.onrender.com/api/api/users", userRoutes);
+app.use("https://projetuptsadya.onrender.com/api/api/posts", postRoutes);
 
 // Fetch Comments for a Post
-app.get("/api/comments/:postId", (req, res) => {
+app.get("https://projetuptsadya.onrender.com/api/api/comments/:postId", (req, res) => {
   const postId = req.params.postId;
   const query = "SELECT * FROM comments WHERE postId = ? ORDER BY date ASC";
   db.query(query, [postId], (err, results) => {
@@ -58,7 +57,7 @@ app.get("/api/comments/:postId", (req, res) => {
 });
 
 // Add a New Comment
-app.post("/api/comments", (req, res) => {
+app.post("https://projetuptsadya.onrender.com/api/api/comments", (req, res) => {
   const { postId, userId, text } = req.body;
 
   // Fetch username from users table
