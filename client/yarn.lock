@@ -7207,10 +7207,10 @@
     "parchment" "^1.1.4"
     "quill-delta" "^3.6.2"
 
-"quill@^2.0.2":
-  "integrity" "sha512-QfazNrhMakEdRG57IoYFwffUIr04LWJxbS/ZkidRFXYCQt63c1gK6Z7IHUXMx/Vh25WgPBU42oBaNzQ0K1R/xw=="
-  "resolved" "https://registry.npmjs.org/quill/-/quill-2.0.2.tgz"
-  "version" "2.0.2"
+"quill@^2.0.3":
+  "integrity" "sha512-xEYQBqfYx/sfb33VJiKnSJp8ehloavImQ2A6564GAbqG55PGw1dAWUn1MUbQB62t0azawUS2CZZhWCjO8gRvTw=="
+  "resolved" "https://registry.npmjs.org/quill/-/quill-2.0.3.tgz"
+  "version" "2.0.3"
   dependencies:
     "eventemitter3" "^5.0.1"
     "lodash-es" "^4.17.21"
