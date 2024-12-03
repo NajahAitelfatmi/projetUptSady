@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/posts${cat}`);
+        const res = await axios.get(`https://projetuptsadya.onrender.com/api/posts${cat}`);
         setPosts(res.data);
       } catch (err) {
         console.log(err);
@@ -99,7 +99,7 @@ const Home = () => {
               <div className="top-meta">
                  <div className="tag-time">
 
-                 <h3 className="title"><Link to={`/post/${post.id}`}>{post.title}</Link></h3>
+                 <h3 className="title"><Link to={`https://projetuptsadya.onrender.com/api/post/${post.id}`}>{post.title}</Link></h3>
 
                                                         </div>
 

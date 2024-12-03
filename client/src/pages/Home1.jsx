@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/posts${cat}`);
+        const res = await axios.get(`https://projetuptsadya.onrender.com/api/posts${cat}`);
         setPosts(res.data);
       } catch (err) {
         console.log(err);
