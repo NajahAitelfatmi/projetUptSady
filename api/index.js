@@ -7,7 +7,6 @@ import multer from "multer";
 import moment from "moment";
 import { db } from "./db.js";
 import cors from "cors";
-import express from "express";
 
 const app = express();
 
