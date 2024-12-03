@@ -6,20 +6,12 @@ import cookieParser from "cookie-parser";
 import multer from "multer";
 import moment from "moment";
 import { db } from "./db.js";
-import cors from 'cors';
-
 
 const app = express();
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-
-// Configuration CORS pour autoriser votre frontend à accéder au backend
-app.use(cors({
-  origin: "https://projetuptsady-20.onrender.com", // Remplacez par l'URL de votre frontend
-  credentials: true, // Permet l'utilisation des cookies ou des en-têtes authentifiés
-}));
 
 // File upload configuration
 const storage = multer.diskStorage({

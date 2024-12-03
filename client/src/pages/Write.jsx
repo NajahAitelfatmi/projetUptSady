@@ -14,7 +14,6 @@ const Write = () => {
 
   const navigate = useNavigate();
 
-  // Fonction d'upload
   const upload = async () => {
     try {
       const formData = new FormData();
@@ -26,51 +25,28 @@ const Write = () => {
     }
   };
 
-  // Gestion du clic sur "Publier"
   const handleClick = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token"); // Récupérer le token d'authentification
     const imgUrl = await upload();
 
     try {
       state
-        ? await axios.put(
-            `https://projetuptsady-8.onrender.com/api/posts/${state.id}`,
-            {
-              title,
-              desc: value,
-              cat,
-              pdf: file ? imgUrl : "",
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
-        : await axios.post(
-            `https://projetuptsady-8.onrender.com/api/posts/`,
-            {
-              title,
-              desc: value,
-              cat,
-              pdf: file ? imgUrl : "",
-              date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+        ? await axios.put(`/posts/${state.id}`, {
+            title,
+            desc: value,
+            cat,
+            pdf: file ? imgUrl : "",
+          })
+        : await axios.post(`/posts/`, {
+            title,
+            desc: value,
+            cat,
+            pdf: file ? imgUrl : "",
+            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+          });
       navigate("/h");
     } catch (err) {
-      if (err.response?.status === 401) {
-        alert("Non autorisé. Veuillez vous reconnecter.");
-        navigate("/login");
-      } else {
-        console.log(err);
-      }
+      console.log(err);
     }
   };
 
@@ -99,7 +75,7 @@ const Write = () => {
             transition: "border-color 0.3s ease",
           }}
           type="text"
-          placeholder="Titre"
+          placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
         />
         <div
@@ -193,10 +169,10 @@ const Write = () => {
                 fontSize: "16px",
                 transition: "background-color 0.3s ease",
               }}
-              onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
-              onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
+              onMouseOver={(e) => e.target.style.backgroundColor = "#0056b3"}
+              onMouseOut={(e) => e.target.style.backgroundColor = "#007bff"}
             >
-              Publier
+              Publish
             </button>
           </div>
         </div>
@@ -213,22 +189,85 @@ const Write = () => {
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <h1 style={{ fontSize: "20px", marginBottom: "15px", fontWeight: "600" }}>Catégorie</h1>
-          {["art", "science", "technology", "cinema", "design", "food"].map((category) => (
-            <div key={category} className="cat">
-              <input
-                type="radio"
-                checked={cat === category}
-                name="cat"
-                value={category}
-                id={category}
-                onChange={(e) => setCat(e.target.value)}
-              />
-              <label htmlFor={category} style={{ fontSize: "16px", marginLeft: "8px" }}>
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </label>
-            </div>
-          ))}
+          <h1 style={{ fontSize: "20px", marginBottom: "15px", fontWeight: "600" }}>Category</h1>
+          <div className="cat">
+            <input
+              type="radio"
+              checked={cat === "art"}
+              name="cat"
+              value="art"
+              id="art"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            <label htmlFor="art" style={{ fontSize: "16px", marginLeft: "8px" }}>
+              Art
+            </label>
+          </div>
+          <div className="cat">
+            <input
+              type="radio"
+              checked={cat === "science"}
+              name="cat"
+              value="science"
+              id="science"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            <label htmlFor="science" style={{ fontSize: "16px", marginLeft: "8px" }}>
+              Science
+            </label>
+          </div>
+          <div className="cat">
+            <input
+              type="radio"
+              checked={cat === "technology"}
+              name="cat"
+              value="technology"
+              id="technology"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            <label htmlFor="technology" style={{ fontSize: "16px", marginLeft: "8px" }}>
+              Technology
+            </label>
+          </div>
+          <div className="cat">
+            <input
+              type="radio"
+              checked={cat === "cinema"}
+              name="cat"
+              value="cinema"
+              id="cinema"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            <label htmlFor="cinema" style={{ fontSize: "16px", marginLeft: "8px" }}>
+              Cinema
+            </label>
+          </div>
+          <div className="cat">
+            <input
+              type="radio"
+              checked={cat === "design"}
+              name="cat"
+              value="design"
+              id="design"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            <label htmlFor="design" style={{ fontSize: "16px", marginLeft: "8px" }}>
+              Design
+            </label>
+          </div>
+          <div className="cat">
+            <input
+              type="radio"
+              checked={cat === "food"}
+              name="cat"
+              value="food"
+              id="food"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            <label htmlFor="food" style={{ fontSize: "16px", marginLeft: "8px" }}>
+              Food
+            </label>
+          </div>
         </div>
       </div>
     </div>
