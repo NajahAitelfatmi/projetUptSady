@@ -33,13 +33,20 @@ const handleClick = async (e) => {
   const imgUrl = await upload();
 
   try {
-    const token = localStorage.getItem("authToken"); // Assuming you store the token in localStorage
+    const token = localStorage.getItem("authToken"); // Retrieve the token from localStorage
+    
+    if (!token) {
+      console.log("User is not authenticated");
+      return; // Handle the case when the token is not available
+    }
+
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // Add the token to the Authorization header
       },
     };
 
+    // Use the token in the request
     if (state) {
       await axios.put(`${apiUrl}/posts/${state.id}`, {
         title,
@@ -61,7 +68,6 @@ const handleClick = async (e) => {
     console.log('Error details:', err.response ? err.response.data : err.message);
   }
 };
-
 
   return (
     <div className="add" style={{ marginTop: "100px", display: "flex", gap: "20px" }}>
