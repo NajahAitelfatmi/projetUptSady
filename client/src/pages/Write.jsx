@@ -27,28 +27,53 @@ const Write = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = await upload();
-
+  
+    // Upload the file if one is provided
+    const imgUrl = file ? await upload() : "";
+  
+    // Retrieve the JWT token from localStorage (or any other storage)
+    const token = localStorage.getItem("jwtToken");
+  
     try {
-      state
-        ? await axios.put(`https://projetuptsadya.onrender.com/api/posts/${state.id}`, {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+  
+      if (state) {
+        // Update an existing post
+        await axios.put(
+          `
+      const res = await axios.post("/posts/${state.id}`,
+          {
             title,
             desc: value,
             cat,
-            pdf: file ? imgUrl : "",
-          })
-        : await axios.post(`https://projetuptsadya.onrender.com/api/posts/`, {
+            pdf: imgUrl,
+          },
+          { headers }
+        );
+      } else {
+        // Create a new post
+        await axios.post(
+          `
+      const res = await axios.post("/posts/`,
+          {
             title,
             desc: value,
             cat,
-            pdf: file ? imgUrl : "",
+            pdf: imgUrl,
             date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-          });
+          },
+          { headers }
+        );
+      }
+  
       navigate("/h");
     } catch (err) {
-      console.log(err);
+      console.error("Error while posting:", err);
     }
   };
+  
 
   return (
     <div className="add" style={{ marginTop: "100px", display: "flex", gap: "20px" }}>

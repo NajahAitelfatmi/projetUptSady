@@ -15,10 +15,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-// Configuration CORS pour autoriser votre frontend à accéder au backend
-app.use(cors({
-  origin: "https://projetuptsadyf.onrender.com", // Remplacez par l'URL de votre frontend
-}));
+
 
 // File upload configuration
 const storage = multer.diskStorage({
