@@ -27,18 +27,26 @@ const Write = () => {
   const apiUrl = "https://projetuptsadya.onrender.com/api";
 
 
-  const handleClick = async (e) => {
+ 
+const handleClick = async (e) => {
   e.preventDefault();
   const imgUrl = await upload();
 
   try {
+    const token = localStorage.getItem("authToken"); // Assuming you store the token in localStorage
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
     if (state) {
       await axios.put(`${apiUrl}/posts/${state.id}`, {
         title,
         desc: value,
         cat,
         pdf: file ? imgUrl : "",
-      });
+      }, config);
     } else {
       await axios.post(`${apiUrl}/posts/`, {
         title,
@@ -46,13 +54,14 @@ const Write = () => {
         cat,
         pdf: file ? imgUrl : "",
         date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-      });
+      }, config);
     }
     navigate("/h");
   } catch (err) {
     console.log('Error details:', err.response ? err.response.data : err.message);
   }
 };
+
 
   return (
     <div className="add" style={{ marginTop: "100px", display: "flex", gap: "20px" }}>
