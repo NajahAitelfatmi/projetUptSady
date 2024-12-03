@@ -33,18 +33,18 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Upload route
-app.post("https://projetuptsadya.onrender.com/api/api/upload", upload.single("file"), (req, res) => {
+app.post("/api/upload", upload.single("file"), (req, res) => {
   const file = req.file;
   res.status(200).json(file.filename);
 });
 
 // Routes
-app.use("https://projetuptsadya.onrender.com/api/api/auth", authRoutes);
-app.use("https://projetuptsadya.onrender.com/api/api/users", userRoutes);
-app.use("https://projetuptsadya.onrender.com/api/api/posts", postRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
 
 // Fetch Comments for a Post
-app.get("https://projetuptsadya.onrender.com/api/api/comments/:postId", (req, res) => {
+app.get("/api/comments/:postId", (req, res) => {
   const postId = req.params.postId;
   const query = "SELECT * FROM comments WHERE postId = ? ORDER BY date ASC";
   db.query(query, [postId], (err, results) => {
@@ -57,7 +57,7 @@ app.get("https://projetuptsadya.onrender.com/api/api/comments/:postId", (req, re
 });
 
 // Add a New Comment
-app.post("https://projetuptsadya.onrender.com/api/api/comments", (req, res) => {
+app.post("/api/comments", (req, res) => {
   const { postId, userId, text } = req.body;
 
   // Fetch username from users table
