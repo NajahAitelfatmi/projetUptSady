@@ -18,7 +18,7 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post("https://projetuptsadya.onrender.com/api/upload", formData);
+      const res = await axios.post("/upload", formData);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -27,34 +27,28 @@ const Write = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-  
-    // Upload the file if provided
-    const imgUrl = file ? await upload() : "";
-  
+    const imgUrl = await upload();
+
     try {
-      const endpoint = state
-        ? `https://projetuptsadya.onrender.com/api/posts/${state.id}`
-        : `https://projetuptsadya.onrender.com/api/posts/`;
-  
-      const method = state ? "put" : "post";
-      const payload = {
-        title,
-        desc: value,
-        cat,
-        pdf: imgUrl,
-        ...(state ? {} : { date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss") }),
-      };
-  
-      // Axios automatically sends cookies if they are set as httpOnly
-      await axios[method](endpoint, payload, { withCredentials: true });
-  
+      state
+        ? await axios.put(`https://projetuptsadya.onrender.com/api/posts/${state.id}`, {
+            title,
+            desc: value,
+            cat,
+            pdf: file ? imgUrl : "",
+          })
+        : await axios.post(`https://projetuptsadya.onrender.com/api/posts/`, {
+            title,
+            desc: value,
+            cat,
+            pdf: file ? imgUrl : "",
+            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+          });
       navigate("/h");
     } catch (err) {
-      console.error("Error while posting:", err.response?.data || err.message);
+      console.log(err);
     }
   };
-  
-
 
   return (
     <div className="add" style={{ marginTop: "100px", display: "flex", gap: "20px" }}>
