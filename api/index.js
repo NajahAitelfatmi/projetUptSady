@@ -9,6 +9,7 @@ import { db } from "./db.js";
 import cors from "cors";
 
 
+const app = express();
 
 // Middleware
 app.use(express.json());
