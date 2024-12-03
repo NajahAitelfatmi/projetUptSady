@@ -24,6 +24,8 @@ const Write = () => {
       console.log(err);
     }
   };
+  const apiUrl = "https://projetuptsadya.onrender.com/api";
+
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -31,13 +33,13 @@ const Write = () => {
 
     try {
       state
-        ? await axios.put(`/posts/${state.id}`, {
+        ? await axios.put(`${apiUrl}/posts/${state.id}`, {
             title,
             desc: value,
             cat,
             pdf: file ? imgUrl : "",
           })
-        : await axios.post(`/posts/`, {
+        : await axios.post(`${apiUrl}/posts/`, {
             title,
             desc: value,
             cat,

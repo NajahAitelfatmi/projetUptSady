@@ -15,6 +15,7 @@ const Register = () => {
   const [err, setError] = useState(null);
 
   const navigate = useNavigate();
+  const apiUrl = "https://projetuptsadya.onrender.com/api";
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -28,7 +29,7 @@ const Register = () => {
     
     e.preventDefault();
     try {
-      await axios.post("/auth/register", inputs);
+      await axios.post(`${apiUrl}/auth/register`, inputs);
       navigate("/login");
     } catch (err) {
       setError(err.response.data);

@@ -12,6 +12,12 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+const cors = require("cors");
+
+// Autoriser toutes les origines (à personnaliser pour plus de sécurité)
+app.use(cors({
+  origin: "https://projetuptsadyf.onrender.com" // Remplacez par l'URL de votre frontend
+}));
 
 // File upload configuration
 const storage = multer.diskStorage({
