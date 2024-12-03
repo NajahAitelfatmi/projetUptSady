@@ -26,54 +26,52 @@ const Write = () => {
   };
 
   const handleClick = async (e) => {
-    e.preventDefault();
-  
-    // Upload the file if one is provided
-    const imgUrl = file ? await upload() : "";
-  
-    // Retrieve the JWT token from localStorage (or any other storage)
-    const token = localStorage.getItem("jwtToken");
-  
-    try {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-  
-      if (state) {
-        // Update an existing post
-        await axios.put(
-          `
-      const res = await axios.post("/posts/${state.id}`,
-          {
-            title,
-            desc: value,
-            cat,
-            pdf: imgUrl,
-          },
-          { headers }
-        );
-      } else {
-        // Create a new post
-        await axios.post(
-          `
-      const res = await axios.post("/posts/`,
-          {
-            title,
-            desc: value,
-            cat,
-            pdf: imgUrl,
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-          },
-          { headers }
-        );
-      }
-  
-      navigate("/h");
-    } catch (err) {
-      console.error("Error while posting:", err);
+  e.preventDefault();
+
+  // Upload the file if one is provided
+  const imgUrl = file ? await upload() : "";
+
+  // Retrieve the JWT token from localStorage (or any other storage)
+  const token = localStorage.getItem("jwtToken");
+
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    if (state) {
+      // Update an existing post
+      await axios.put(
+        `https://projetuptsadya.onrender.com/api/posts/${state.id}`,
+        {
+          title,
+          desc: value,
+          cat,
+          pdf: imgUrl,
+        },
+        { headers }
+      );
+    } else {
+      // Create a new post
+      await axios.post(
+        `https://projetuptsadya.onrender.com/api/posts/`,
+        {
+          title,
+          desc: value,
+          cat,
+          pdf: imgUrl,
+          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+        },
+        { headers }
+      );
     }
-  };
-  
+
+    navigate("/h");
+  } catch (err) {
+    console.error("Error while posting:", err);
+  }
+};
+
 
   return (
     <div className="add" style={{ marginTop: "100px", display: "flex", gap: "20px" }}>
