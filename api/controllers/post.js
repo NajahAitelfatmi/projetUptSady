@@ -60,8 +60,11 @@ export const updatePost = (req, res) => {
 
   const values = [req.body.title, req.body.desc, req.body.pdf, req.body.cat];
 
-  db.query(q, [...values, postId, req.body.uid], (err, data) => {
-    if (err) return res.status(500).json(err);
-    return res.json("Post has been updated.");
+  db.query(q, [...values], (err, data) => {
+    if (err) {
+      console.error("Database error: ", err);
+      return res.status(500).json(err);
+    }
+    return res.json("Success message");
   });
-};
+}  
