@@ -9,7 +9,7 @@ const Comments = ({ postId, currentUser }) => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get(`https://projetuptsadya.onrender.com/api/comments/${postId}`);
+        const res = await axios.get(`/comments/${postId}`);
         setComments(res.data);
       } catch (err) {
         console.error(err);
@@ -24,7 +24,7 @@ const Comments = ({ postId, currentUser }) => {
     if (!text.trim()) return;
 
     try {
-      const res = await axios.post("https://projetuptsadya.onrender.com/api/comments", {
+      const res = await axios.post("/comments", {
         postId,
         userId: currentUser.id,
         text,

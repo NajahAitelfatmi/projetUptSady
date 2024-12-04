@@ -18,7 +18,7 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post("https://projetuptsadya.onrender.com/api/upload", formData);
+      const res = await axios.post("/upload", formData);
       return res.data;
     } catch (err) {
       console.log(err);
@@ -31,13 +31,13 @@ const Write = () => {
 
     try {
       state
-        ? await axios.put(`https://projetuptsadya.onrender.com/api/posts/${state.id}`, {
+        ? await axios.put(`/posts/${state.id}`, {
             title,
             desc: value,
             cat,
             pdf: file ? imgUrl : "",
           })
-        : await axios.post(`https://projetuptsadya.onrender.com/api/posts/`, {
+        : await axios.post(`/posts/`, {
             title,
             desc: value,
             cat,
