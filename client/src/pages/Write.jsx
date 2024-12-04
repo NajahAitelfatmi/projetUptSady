@@ -37,7 +37,7 @@ const Write = () => {
             cat,
             pdf: file ? imgUrl : "",
           })
-        : await axios.post(`/posts/`, {
+        : await axios.post(`https://projetuptsady-quxd.onrender.com/api/posts/`, {
             title,
             desc: value,
             cat,
