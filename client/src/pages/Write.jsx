@@ -26,46 +26,29 @@ const Write = () => {
   };
 
   const handleClick = async (e) => {
-  e.preventDefault();
-  const imgUrl = await upload();
+    e.preventDefault();
+    const imgUrl = await upload();
 
-  try {
-    const token = localStorage.getItem("authToken"); // Assuming token is stored in localStorage
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`, // Add the token to the headers
-      },
-    };
-
-    state
-      ? await axios.put(
-          `https://projetuptsadya.onrender.com/api/posts/${state.id}`,
-          {
+    try {
+      state
+        ? await axios.put(`https://projetuptsadya.onrender.com/api/posts/${state.id}`, {
             title,
             desc: value,
             cat,
             pdf: file ? imgUrl : "",
-          },
-          config
-        )
-      : await axios.post(
-          `https://projetuptsadya.onrender.com/api/posts/`,
-          {
+          })
+        : await axios.post(`https://projetuptsadya.onrender.com/api/posts/`, {
             title,
             desc: value,
             cat,
             pdf: file ? imgUrl : "",
             date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-          },
-          config
-        );
-
-    navigate("/h");
-  } catch (err) {
-    console.error(err);
-  }
-};
-
+          });
+      navigate("/h");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="add" style={{ marginTop: "100px", display: "flex", gap: "20px" }}>
