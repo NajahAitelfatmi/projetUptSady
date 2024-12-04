@@ -31,7 +31,7 @@ const Write = () => {
 
     try {
       state
-        ? await axios.put(`/posts/${state.id}`, {
+        ? await axios.put(`https://projetuptsady-quxd.onrender.com/api/posts/${state.id}`, {
             title,
             desc: value,
             cat,

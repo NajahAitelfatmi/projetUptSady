@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 
 app.use(cors({
-  origin: "https://projetuptsadyf.onrender.com", // Replace with the URL of your frontend
+  origin: "https://projetuptsady-1-l66c.onrender.com", // Replace with the URL of your frontend
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
