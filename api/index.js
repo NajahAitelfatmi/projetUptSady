@@ -17,11 +17,12 @@ app.use(cookieParser());
 
 
 
-// Configuration CORS
-app.use(cors({
-  origin: "https://projetuptsadyf.onrender.com", // Remplacez par votre URL front-end
-      credentials: true, // Permet l'envoi de cookies
+const cors = require('cors');
 
+app.use(cors({
+  origin: "https://projetuptsadyf.onrender.com", // Replace with the URL of your frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
 
