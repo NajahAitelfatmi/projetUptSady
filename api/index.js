@@ -17,7 +17,6 @@ app.use(cookieParser());
 
 
 
-const cors = require('cors');
 
 app.use(cors({
   origin: "https://projetuptsadyf.onrender.com", // Replace with the URL of your frontend
