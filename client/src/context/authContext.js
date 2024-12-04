@@ -9,12 +9,12 @@ export const AuthContexProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("https://projetuptsady-quxd.onrender.com/api/auth/login", inputs);
+    const res = await axios.post("/auth/login", inputs);
     setCurrentUser(res.data);
   };
 
   const logout = async (inputs) => {
-    await axios.post("https://projetuptsady-quxd.onrender.com/api/auth/logout");
+    await axios.post("/auth/logout");
     setCurrentUser(null);
   };
 

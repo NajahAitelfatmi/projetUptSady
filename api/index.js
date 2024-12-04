@@ -16,13 +16,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 
+app.use(cors());
 
 
-app.use(cors({
-  origin: "https://projetuptsady-1-l66c.onrender.com", // Replace with the URL of your frontend
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
+
 
 
 // File upload configuration

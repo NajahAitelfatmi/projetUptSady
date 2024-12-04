@@ -31,13 +31,13 @@ const Write = () => {
 
     try {
       state
-        ? await axios.put(`https://projetuptsady-quxd.onrender.com/api/posts/${state.id}`, {
+        ? await axios.put(`/posts/${state.id}`, {
             title,
             desc: value,
             cat,
             pdf: file ? imgUrl : "",
           })
-        : await axios.post(`https://projetuptsady-quxd.onrender.com/api/posts/`, {
+        : await axios.post(`/posts/`, {
             title,
             desc: value,
             cat,
