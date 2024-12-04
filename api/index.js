@@ -20,7 +20,6 @@ app.use(cookieParser());
 // Configuration CORS
 app.use(cors({
   origin: "https://projetuptsadyf.onrender.com", // Remplacez par votre URL front-end
-  credentials: true, // Permet l'envoi des cookies
 }));
 
 
