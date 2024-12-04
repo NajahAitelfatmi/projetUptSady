@@ -15,19 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = [
-  'https://projetuptsady-1-l66c.onrender.com',
-  'http://localhost:3000'
-];
+
 
 app.use(cors({
-  origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-      } else {
-          callback(new Error('Not allowed by CORS'));
-      }
-  },
+  origin: 'https://projetuptsady-1-l66c.onrender.com',
   credentials: true
 }));
 
