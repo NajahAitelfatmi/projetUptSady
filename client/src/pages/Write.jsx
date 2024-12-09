@@ -39,46 +39,41 @@ const Write = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    setError(null); // Reset errors
-    setLoading(true); // Start loading
-
-    const imgUrl = file ? await upload() : "";
-
-    if (file && !imgUrl) {
-      setLoading(false);
-      return; // Stop if file upload fails
-    }
-
     try {
-      const payload = {
-        title,
-        desc: value,
-        cat,
-        pdf: imgUrl,
-      };
-
-      if (!state) {
-        payload.date = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
-        await axios.post(
-          `https://projetuptsady-quxd.onrender.com/api/posts/`,
-          payload
-        );
-      } else {
-        await axios.put(
-          `https://projetuptsady-quxd.onrender.com/api/posts/${state.id}`,
-          payload
-        );
+      const imgUrl = file ? await upload() : null;
+  
+      if (!title || !value || !cat) {
+        alert("Please fill in all the required fields.");
+        return;
       }
-
+  
+      if (state) {
+        await axios.put(`https://projetuptsady-quxd.onrender.com/api/posts/${state.id}`, {
+          title,
+          desc: value,
+          cat,
+          pdf: imgUrl || "",
+        });
+      } else {
+        await axios.post(`https://projetuptsady-quxd.onrender.com/api/posts/`, {
+          title,
+          desc: value,
+          cat,
+          pdf: imgUrl || "",
+          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+        });
+      }
       navigate("/h");
     } catch (err) {
-      console.error(err);
-      setError("Failed to save the post. Please try again.");
-    } finally {
-      setLoading(false); // End loading
+      console.error("Error saving the post:", err.response?.data || err.message);
+      alert(
+        `Failed to save the post. ${
+          err.response?.data?.message || "Please try again later."
+        }`
+      );
     }
   };
-
+  
   return (
     <div className="add" style={{ marginTop: "100px", display: "flex", gap: "20px" }}>
       <div
