@@ -17,12 +17,12 @@ app.use(cookieParser());
 
 
 
+
 app.use(cors({
   origin: 'https://projetuptsady-1-l66c.onrender.com',
-  credentials: true
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
 }));
-
-
 
 
 
