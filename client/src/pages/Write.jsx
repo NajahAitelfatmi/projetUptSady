@@ -7,46 +7,75 @@ import moment from "moment";
 
 const Write = () => {
   const state = useLocation().state;
-  const [value, setValue] = useState(state?.title || "");
-  const [title, setTitle] = useState(state?.desc || "");
+  const [value, setValue] = useState(state?.desc || ""); // Corrected to populate description
+  const [title, setTitle] = useState(state?.title || ""); // Corrected to populate title
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
+  const [loading, setLoading] = useState(false); // Loading state for API requests
+  const [error, setError] = useState(null); // Error state for API errors
 
   const navigate = useNavigate();
 
   const upload = async () => {
+    if (!file || file.type !== "application/pdf") {
+      setError("Please upload a valid PDF file.");
+      return null;
+    }
+
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post(`https://projetuptsady-quxd.onrender.com/api/upload`, formData);
+      const res = await axios.post(
+        `https://projetuptsady-quxd.onrender.com/api/upload`,
+        formData
+      );
       return res.data;
     } catch (err) {
       console.log(err);
+      setError("File upload failed. Please try again.");
+      return null;
     }
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = await upload();
+    setError(null); // Reset errors
+    setLoading(true); // Start loading
+
+    const imgUrl = file ? await upload() : "";
+
+    if (file && !imgUrl) {
+      setLoading(false);
+      return; // Stop if file upload fails
+    }
 
     try {
-      state
-        ? await axios.put(`https://projetuptsady-quxd.onrender.com/api/posts/${state.id}`, {
-            title,
-            desc: value,
-            cat,
-            pdf: file ? imgUrl : "",
-          })
-        : await axios.post(`https://projetuptsady-quxd.onrender.com/api/posts/`, {
-            title,
-            desc: value,
-            cat,
-            pdf: file ? imgUrl : "",
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-          });
+      const payload = {
+        title,
+        desc: value,
+        cat,
+        pdf: imgUrl,
+      };
+
+      if (!state) {
+        payload.date = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
+        await axios.post(
+          `https://projetuptsady-quxd.onrender.com/api/posts/`,
+          payload
+        );
+      } else {
+        await axios.put(
+          `https://projetuptsady-quxd.onrender.com/api/posts/${state.id}`,
+          payload
+        );
+      }
+
       navigate("/h");
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      setError("Failed to save the post. Please try again.");
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -65,6 +94,7 @@ const Write = () => {
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
+        {error && <div style={{ color: "red" }}>{error}</div>}
         <input
           style={{
             padding: "12px",
@@ -76,6 +106,7 @@ const Write = () => {
           }}
           type="text"
           placeholder="Title"
+          value={title} // Added value to pre-populate input
           onChange={(e) => setTitle(e.target.value)}
         />
         <div
@@ -169,10 +200,11 @@ const Write = () => {
                 fontSize: "16px",
                 transition: "background-color 0.3s ease",
               }}
-              onMouseOver={(e) => e.target.style.backgroundColor = "#0056b3"}
-              onMouseOut={(e) => e.target.style.backgroundColor = "#007bff"}
+              disabled={loading}
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
             >
-              Publish
+              {loading ? "Publishing..." : "Publish"}
             </button>
           </div>
         </div>

@@ -20,9 +20,10 @@ app.use(cookieParser());
 
 app.use(cors({
   origin: 'https://projetuptsady-1-l66c.onrender.com',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, // Allow cookies
 }));
+
 
 
 
